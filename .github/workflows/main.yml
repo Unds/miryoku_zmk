@@ -69,6 +69,7 @@ jobs:
         modules: ${{ fromJSON(inputs.modules) }}
     env:
       MIRYOKU_DEBUG: ${{ secrets.MIRYOKU_DEBUG }}
+      GIT_TERMINAL_PROMPT: '0'
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -180,7 +181,7 @@ jobs:
           cat "$matrix_file"
           echo "::endgroup::"
 
-          git config --global credential.helper ''
+          git config --system credential.helper '' 2>/dev/null || git config --global credential.helper ''
           echo "::group::outboards"
           if [ -n "$shield" ]
           then
