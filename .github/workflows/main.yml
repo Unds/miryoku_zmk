@@ -180,6 +180,7 @@ jobs:
           cat "$matrix_file"
           echo "::endgroup::"
 
+          git config --global credential.helper ''
           echo "::group::outboards"
           if [ -n "$shield" ]
           then
